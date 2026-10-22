@@ -225,62 +225,6 @@
         </packagedElement>
       </packagedElement>
 
-      <!-- ═══════════════ DPreCheckPembayaran Delta ═══════════════ -->
-      <!-- Product A: mahasiswa harus bayar UKT sebelum bisa isi IRS -->
-      <packagedElement xmi:type="uml:Package" xmi:id="_pkg_dprecheckpembayaran" name="DPreCheckPembayaran">
-        <packagedElement xmi:type="uml:Class" xmi:id="_cls_dpre_prsimpl" name="PengisianRencanaStudiImpl">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpre_orig" name="pengisianrencanastudiimpl" type="_cls_prsimpl"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpre_modlink" name="pengisianrencanastudiimplMPengisianRencanaStudi" type="_cls_prsimpl" association="_assoc_dpre_modifies">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lv_dpre_modlink"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uv_dpre_modlink" value="1"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpre_pemb" name="pembayaranimpl" type="_cls_pembayaranimpl" association="_assoc_dpre_pemb">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lv_dpre_pemb"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uv_dpre_pemb" value="1"/>
-          </ownedAttribute>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_op_dpre_cekpembayaran" name="cekPembayaran">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekpemb_in" name="vmjExchange" type="_dt_vmjexchange"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekpemb_out" type="_dt_hashmap" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-      </packagedElement>
-
-      <!-- ═══════════════ DPostCheckIRS Delta ═══════════════ -->
-      <!-- Product B: mahasiswa isi IRS dulu, pembayaran baru dikonfirmasi setelah IRS terisi -->
-      <packagedElement xmi:type="uml:Package" xmi:id="_pkg_dpostcheckirs" name="DPostCheckIRS">
-        <packagedElement xmi:type="uml:Class" xmi:id="_cls_dpost_pembimpl" name="PembayaranImpl">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpost_orig" name="pembayaranimpl" type="_cls_pembayaranimpl"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpost_modlink" name="pembayaranimplMPembayaran" type="_cls_pembayaranimpl" association="_assoc_dpost_modifies">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lv_dpost_modlink"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uv_dpost_modlink" value="1"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dpost_prs" name="pengisianrencanastudiimpl" type="_cls_prsimpl" association="_assoc_dpost_prs">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lv_dpost_prs"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uv_dpost_prs" value="1"/>
-          </ownedAttribute>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_op_dpost_cekirs" name="cekIRS">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekirs_in" name="vmjExchange" type="_dt_vmjexchange"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekirs_out" type="_dt_hashmap" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-      </packagedElement>
-
-      <!-- ═══════════════ DCekBeasiswa Delta ═══════════════ -->
-      <!-- Product A: cek kelayakan beasiswa sebelum bayar UKT -->
-      <packagedElement xmi:type="uml:Package" xmi:id="_pkg_dcekbeasiswa" name="DCekBeasiswa">
-        <packagedElement xmi:type="uml:Class" xmi:id="_cls_dcek_tagihanimpl" name="TagihanImpl">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dcek_orig" name="tagihanimpl" type="_cls_tagihanimpl"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_attr_dcek_modlink" name="tagihanimplMTagihan" type="_cls_tagihanimpl" association="_assoc_dcek_modifies">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lv_dcek_modlink"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uv_dcek_modlink" value="1"/>
-          </ownedAttribute>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_op_dcek_cekbeasiswa" name="cekKelayakanBeasiswa">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekbeasiswa_in" name="vmjExchange" type="_dt_vmjexchange"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_param_cekbeasiswa_out" type="_dt_hashmap" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-      </packagedElement>
-
     </packagedElement>
 
     <!-- ═══════════════ Associations ═══════════════ -->
@@ -373,31 +317,6 @@
       </ownedEnd>
     </packagedElement>
 
-    <!-- DPreCheckPembayaran modifies link (PRS delta → PRS module) -->
-    <packagedElement xmi:type="uml:Association" xmi:id="_assoc_dpre_modifies" memberEnd="_attr_dpre_modlink _oe_dpre_modifies">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oe_dpre_modifies" name="pengisianrencanastudiimpl" type="_cls_dpre_prsimpl" association="_assoc_dpre_modifies"/>
-    </packagedElement>
-
-    <!-- DPreCheckPembayaran → Pembayaran (added by delta) -->
-    <packagedElement xmi:type="uml:Association" xmi:id="_assoc_dpre_pemb" memberEnd="_attr_dpre_pemb _oe_dpre_pemb">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oe_dpre_pemb" name="pengisianrencanastudiimpl" type="_cls_dpre_prsimpl" association="_assoc_dpre_pemb"/>
-    </packagedElement>
-
-    <!-- DPostCheckIRS modifies link (Pembayaran delta → Pembayaran module) -->
-    <packagedElement xmi:type="uml:Association" xmi:id="_assoc_dpost_modifies" memberEnd="_attr_dpost_modlink _oe_dpost_modifies">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oe_dpost_modifies" name="pembayaranimpl" type="_cls_dpost_pembimpl" association="_assoc_dpost_modifies"/>
-    </packagedElement>
-
-    <!-- DPostCheckIRS → PRS (added by delta) -->
-    <packagedElement xmi:type="uml:Association" xmi:id="_assoc_dpost_prs" memberEnd="_attr_dpost_prs _oe_dpost_prs">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oe_dpost_prs" name="pembayaranimpl" type="_cls_dpost_pembimpl" association="_assoc_dpost_prs"/>
-    </packagedElement>
-
-    <!-- DCekBeasiswa modifies link (Tagihan delta → Tagihan module) -->
-    <packagedElement xmi:type="uml:Association" xmi:id="_assoc_dcek_modifies" memberEnd="_attr_dcek_modlink _oe_dcek_modifies">
-      <ownedEnd xmi:type="uml:Property" xmi:id="_oe_dcek_modifies" name="tagihanimpl" type="_cls_dcek_tagihanimpl" association="_assoc_dcek_modifies"/>
-    </packagedElement>
-
     <!-- ═══════════════ Profile Application ═══════════════ -->
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_profapp_umlvm">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_profapp_ann_uml" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -421,20 +340,14 @@
   <umlvmprofile:module xmi:id="_st_mod_prs" base_Package="_pkg_mprs"/>
   <umlvmprofile:module xmi:id="_st_mod_dosen" base_Package="_pkg_mdosen"/>
   <umlvmprofile:module xmi:id="_st_mod_jadwal" base_Package="_pkg_mjadwal"/>
+  <umlvmprofile:pk xmi:id="_RKk-OuH5QjS5rQqyhZALSg" base_Property="_attr_pemb_id"/>
+  <umlvmprofile:pk xmi:id="_kb9bkR2cQZupjEouEuy7iQ" base_Property="_attr_tag_id"/>
+  <umlvmprofile:pk xmi:id="_G72dy1kJTMGZQKkP1tsi3w" base_Property="_attr_mhs_id"/>
+  <umlvmprofile:pk xmi:id="_1Jv7poUOSj6DenOUvekQqQ" base_Property="_attr_sem_id"/>
+  <umlvmprofile:pk xmi:id="_8ZJkwXhoTJK06obX4J9VDw" base_Property="_attr_mk_id"/>
+  <umlvmprofile:pk xmi:id="_7m4bG4KAR_2FAuu2_5nDlA" base_Property="_attr_dsn_id"/>
+  <umlvmprofile:pk xmi:id="_fcZhvcn4Qsip3Z7NFOVLdg" base_Property="_attr_jdw_id"/>
+  <umlvmprofile:pk xmi:id="_rbeeU-5PTySASFzUfyFCgg" base_Property="_attr_prs_id"/>
 
-  <!-- Delta packages = «delta» -->
-  <umlvmprofile:delta xmi:id="_st_delta_precheck" base_Package="_pkg_dprecheckpembayaran"/>
-  <umlvmprofile:delta xmi:id="_st_delta_postcheck" base_Package="_pkg_dpostcheckirs"/>
-  <umlvmprofile:delta xmi:id="_st_delta_cekbeasiswa" base_Package="_pkg_dcekbeasiswa"/>
-
-  <!-- Modified classes in deltas = «modifiedClass» -->
-  <umlvmprofile:modifiedClass xmi:id="_st_mc_dpre_prs" base_Class="_cls_dpre_prsimpl"/>
-  <umlvmprofile:modifiedClass xmi:id="_st_mc_dpost_pemb" base_Class="_cls_dpost_pembimpl"/>
-  <umlvmprofile:modifiedClass xmi:id="_st_mc_dcek_tag" base_Class="_cls_dcek_tagihanimpl"/>
-
-  <!-- Modifies associations = «modifies» -->
-  <umlvmprofile:modifies xmi:id="_st_modifies_dpre" base_Association="_assoc_dpre_modifies"/>
-  <umlvmprofile:modifies xmi:id="_st_modifies_dpost" base_Association="_assoc_dpost_modifies"/>
-  <umlvmprofile:modifies xmi:id="_st_modifies_dcek" base_Association="_assoc_dcek_modifies"/>
 
 </xmi:XMI>
